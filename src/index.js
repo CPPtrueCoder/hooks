@@ -17,15 +17,19 @@ const reducer = (state= 0,action) =>{
 
 }
 
+const increment =()=>({type: "INC"});
+const decrement =()=> ({type:'DEC'});
+const reset =()=> ({type:'RST'});
+
 const store = createStore(reducer);
 inc.addEventListener('click', ()=>{
-    store.dispatch({type:'INC'});
+    store.dispatch(increment());
 })
 dec.addEventListener('click', ()=>{
-    store.dispatch({type:'DEC'});
+    store.dispatch(decrement());
 })
 rst.addEventListener('click', ()=>{
-    store.dispatch({type:'RST'});
+    store.dispatch(reset());
 })
 
 const update = ()=>{
