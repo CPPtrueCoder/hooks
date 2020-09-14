@@ -1,10 +1,9 @@
+import React from "react";
+import ReactDOM from 'react-dom'
 import {createStore, bindActionCreators} from "redux";
 import reducer from './reducer'
-import  {increment, decrement ,reset} from "./actions";
-
-const inc = document.getElementById('inc'),
-    dec= document.getElementById('dec'),
-    rst= document.getElementById('rst');
+import * as actions from "./actions";
+import Counter from './App'
 
 const store = createStore(reducer);
 const {dispatch} = store;
@@ -14,26 +13,20 @@ const {dispatch} = store;
 // }
 
 
-const incDispatch =bindActionCreators(increment,dispatch);
-const decDispatch =bindActionCreators(decrement, dispatch)
-const resetDispatch =bindActionCreators(reset,dispatch)
+const {increment, decrement, reset} = bindActionCreators(actions, dispatch);
 
 
-inc.addEventListener('click', ()=>{
-    incDispatch()
-})
-dec.addEventListener('click', ()=>{
-  decDispatch()
-})
-rst.addEventListener('click', ()=>{
-    resetDispatch();
-})
+const update = () => {
+    ReactDOM.render(
+        <Counter
+            counter ={store.getState()}
+             inc={increment}
+             dec={decrement}
+             rst ={reset}/>,
+        document.getElementById('root'))
 
-const update = ()=>{
-    document.querySelector('.counter').textContent = store.getState().toString();
+
 };
-
+update();
 store.subscribe(update)
-
-
 
