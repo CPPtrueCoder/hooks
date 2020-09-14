@@ -1,3 +1,3 @@
-export const increment =()=>({type: "INC"});
-export const decrement =()=> ({type:'DEC'});
-export const reset =()=> ({type:'RST'});
+export const inc =()=>({type: "INC"});
+export const dec =()=> ({type:'DEC'});
+export const rst =()=> ({type:'RST'});
